@@ -19,7 +19,6 @@ app.post('/api/paytm/initiate', (req, res) => {
         paytmParams.head = { "signature": checksum };
         const post_data = JSON.stringify(paytmParams);
         const options = { hostname: 'securegw.paytm.in', port: 443, path: `/theia/api/v1/initiateTransaction?mid=${MID}&orderId=${orderId}`, method: 'POST', headers: { 'Content-Type': 'application/json', 'Content-Length': post_data.length } };
-        
         const post_req = https.request(options, (post_res) => {
             let response = "";
             post_res.on('data', chunk => response += chunk);
